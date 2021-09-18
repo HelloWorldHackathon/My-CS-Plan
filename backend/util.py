@@ -16,7 +16,7 @@ tracks = ["(Algorithmic) Foundations Track",
           "Systems Software Track"]
 
 
-def get_class_list(track:pd.DataFrame):
+def get_class_list(track: pd.DataFrame):
     classes = []
     shape = track.shape
     for i in range(shape[0]):
@@ -33,7 +33,7 @@ def get_class_list(track:pd.DataFrame):
 
 
 def compare_tracks(track1, track2):
-    print(track1['1'][0])
+    print()
 
 
 def get_name(classnum: str) -> str:

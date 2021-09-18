@@ -26,7 +26,8 @@ def load_csv():
     for file in util.tracks:
         path = "./data/" + file + ".csv"
         print(path)
-        csvs.append(pd.read_csv(path))
+        list = util.get_class_list(pd.read_csv(path))
+        csvs.append(list)
 
 
 if __name__ == "__main__":

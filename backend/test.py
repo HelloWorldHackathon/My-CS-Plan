@@ -4,7 +4,7 @@ import app
 
 
 def load_csv():
-    csvs=[]
+    csvs = []
     for file in util.tracks:
         path = "./data/" + file + ".csv"
 
