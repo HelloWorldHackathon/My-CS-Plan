@@ -1,7 +1,8 @@
 import re
 
-import requests
 import pandas as pd
+import requests
+
 classes_api = "http://api.purdue.io/odata/Courses?%24filter=Subject/Abbreviation%20eq%20%27<abbr>%27&%24orderby=Number%20asc"
 
 tracks = ["(Algorithmic) Foundations Track",
@@ -13,6 +14,7 @@ tracks = ["(Algorithmic) Foundations Track",
           "Security Track",
           "Software Engineering Track",
           "Systems Software Track"]
+
 
 def get_class_list(track:pd.DataFrame):
     classes = []
@@ -29,9 +31,9 @@ def get_class_list(track:pd.DataFrame):
 
     return classes
 
+
 def compare_tracks(track1, track2):
     print(track1['1'][0])
-
 
 
 def get_name(classnum: str) -> str:
