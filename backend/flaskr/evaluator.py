@@ -17,12 +17,11 @@ def evaluate(first_track: List[List[any]], second_track: List[List[any]]) -> Lis
         # each class (ex. CS 180, MA 261)
         for cls in classes:
             # class list (ex. [1, MA 161, CS 193, CS 191])
-            for check_classes in second_track:
-                if cls in check_classes:
-                    continue
-                else:
-                    # TODO
-                    pass
+            if cls in [classname for classlist in second_track for classname in classlist]:
+                continue
+            else:
+                # TODO - this is a non-overlapping class
+                pass
 
     return final_schedule
 
