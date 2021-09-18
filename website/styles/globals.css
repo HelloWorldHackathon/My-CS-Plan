@@ -1,3 +1,4 @@
+/* Largely Universal styling */
 html,
 body {
   padding: 0;
@@ -8,19 +9,26 @@ body {
   color: white;
 }
 
-a {
-  text-decoration: underline;
-}
-
 * {
   box-sizing: border-box;
 }
 
+/* All element styling */
+h1,
+h2 {
+  color: #cfb991;
+}
+
+a {
+  text-decoration: underline;
+}
+
+/* Large containers (content and footer) */
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
   margin: 5vh;
-  
+
   height: 100vh;
 }
 
@@ -31,44 +39,38 @@ a {
   display: inline-block;
   justify-content: center;
   align-items: center;
-  text-align:center;
+  text-align: center;
+  margin-top: 1vw;
 }
 
 .footer a {
   justify-content: center;
   align-items: center;
-  color: #9D9795;
+  color: #9d9795;
 }
 
-
+/* Content specific styling */
 .title {
-  color: #cfb991;
+  color: #daaa00;
   margin: 0;
   line-height: 1.15;
   font-size: 4rem;
 }
 
-.title,
-.description {
-  text-align: center;
+/* 3 x 3 flexbox styling for check boxes */
+.threebythree {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 66vw;
 }
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
+.item {
+  flex: 0 32%;
+  margin-bottom: 2%; /* (100-32*3)/2 */
 }
 
-#checkboxes label {
-  float: left;
-}
-#checkboxes ul {
-  margin: 0;
-  list-style: none;
-  float: left;
-}
-
-/* Custom styles below: */
-
+/* Checkbox list styling */
 .checkboxList {
   display: block;
   position: relative;
@@ -108,7 +110,7 @@ a {
 
 /* When the checkbox is checked, add a blue background */
 .checkboxList input:checked ~ .checkmark {
-  background-color: #2196F3;
+  background-color: #daaa00;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -136,14 +138,46 @@ a {
   transform: rotate(45deg);
 }
 
-.threebythree {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  max-width: 66vw;
+/* Submit button styling */
+.submit-button {
+  color: white;
+  padding: 10px 25px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  border: 2px solid white;
 }
 
-.item {
-  flex: 0 32%;
-  margin-bottom: 2%; /* (100-32*3)/2 */
+.submit-button:hover {
+  background: white;
+  color: black;
+}
+
+.submit-button:active {
+  top: 2px;
+}
+
+/* Output table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th {
+  border: 1px solid black;
+  background-color: #555960;
+  text-align: left;
+  padding: 8px;
+}
+
+td {
+  border: 1px solid black;
+  background-color: #C4BFC0;
+  text-align: left;
+  padding: 8px;
 }
