@@ -19,21 +19,21 @@ export default function Home() {
         <div class="item">
           <label class="checkboxList">
             Computational Science and Engineering
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Computational Science and Engineering")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Computer Graphics and Visualization
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Computer Graphics and Visualization")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Database and Information Systems Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Database and Information Systems Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
@@ -41,21 +41,21 @@ export default function Home() {
         <div class="item">
           <label class="checkboxList">
             (Algorithmic) Foundations Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("(Algorithmic) Foundations Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Machine Intelligence Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Machine Intelligence Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Programming Language Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Programming Language Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
@@ -63,21 +63,21 @@ export default function Home() {
         <div class="item">
           <label class="checkboxList">
             Security Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Security Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Software Engineering
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Software Engineering")} />
             <span class="checkmark"></span>
           </label>
         </div>
         <div class="item">
           <label class="checkboxList">
             Systems Software Track
-            <input type="checkbox" />
+            <input type="checkbox" onClick={() => getTrack("Systems Software Track")} />
             <span class="checkmark"></span>
           </label>
         </div>
@@ -85,7 +85,11 @@ export default function Home() {
 
       <hr />
 
-      <p> hello i am dynamic content!</p>
+      <div class="dynamicContent">
+        <p id="text" style={{ display: "none" }}>
+          Checkbox is CHECKED!
+        </p>
+      </div>
 
       <footer class="footer">
         <p>
@@ -98,4 +102,10 @@ export default function Home() {
       </footer>
     </div>
   );
+}
+
+function getTrack(track) {
+  var checkBox = document.getElementById("myCheck");
+  var text = document.getElementById("text");
+  console.log(track);
 }

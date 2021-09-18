@@ -20,7 +20,7 @@ a {
   min-height: 100vh;
   padding: 0 0.5rem;
   margin: 5vh;
-
+  
   height: 100vh;
 }
 
@@ -31,14 +31,15 @@ a {
   display: inline-block;
   justify-content: center;
   align-items: center;
-  text-align: center;
+  text-align:center;
 }
 
 .footer a {
   justify-content: center;
   align-items: center;
-  color: #9d9795;
+  color: #9D9795;
 }
+
 
 .title {
   color: #cfb991;
@@ -107,7 +108,7 @@ a {
 
 /* When the checkbox is checked, add a blue background */
 .checkboxList input:checked ~ .checkmark {
-  background-color: #2196f3;
+  background-color: #2196F3;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -144,6 +145,5 @@ a {
 
 .item {
   flex: 0 32%;
-
   margin-bottom: 2%; /* (100-32*3)/2 */
 }
