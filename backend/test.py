@@ -1,14 +1,20 @@
 import pandas as pd
-import compare
-def load_csv():
-    csvs = []
-    for file in compare.tracks:
-        path = "./data/" + file + ".csv"
-        print(path)
-        csvs.append(pd.read_csv(path))
+import util
+import app
 
+def load_csv():
+    csvs=[]
+    for file in util.tracks:
+        path = "./data/" + file + ".csv"
+
+        csvs.append(pd.read_csv(path))
     return csvs
 
+def main():
+    csv = load_csv()
+    util.get_class_list(csv[2])
 
-csv = load_csv()
+if __name__ == "__main__":
+    main()
+
 

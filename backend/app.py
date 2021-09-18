@@ -1,6 +1,6 @@
 from flask import Flask
 import pandas as pd
-import compare
+import util
 
 app = Flask(__name__)
 data = []
@@ -11,14 +11,14 @@ def index():
 
 @app.route("/<classone>/<classtwo>")
 def classes(classone, classtwo):
-    compare.compare_tracks(classone, classtwo)
+    util.compare_tracks(classone, classtwo)
     return {
         "classone": classone,
         "classtwo": classtwo
     }
 def load_csv():
     csvs=[]
-    for file in compare.tracks:
+    for file in util.tracks:
         path = "./data/" + file + ".csv"
         print(path)
         csvs.append(pd.read_csv(path))
