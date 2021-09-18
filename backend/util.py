@@ -6,7 +6,7 @@ classes_api = "http://api.purdue.io/odata/Courses?%24filter=Subject/Abbreviation
 
 
 def get_name(classnum: str) -> str:
-    # handle CS 3XX
+    # handle edge cases
     if classnum == "NAXXX":
         return classnum
     if re.match("CS \\dXX", classnum):
