@@ -1,7 +1,9 @@
 import re
+from typing import List
 
 import pandas as pd
 import requests
+from requests.api import get
 
 classes_api = "http://api.purdue.io/odata/Courses?%24filter=Subject/Abbreviation%20eq%20%27<abbr>%27&%24orderby=Number%20asc"
 
@@ -132,3 +134,10 @@ def get_name(classnum: str) -> str:
         return classes[0]["Title"]
 
     return "Error!"
+
+
+def format_schedule(schedule_item):
+    if type(schedule_item) == str:
+        return get_name(schedule_item)
+    else:
+        return " OR ".join(list(map(lambda x: get_name(x), schedule_item)))
