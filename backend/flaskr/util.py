@@ -30,11 +30,10 @@ def get_class_list(track: pd.DataFrame):
             if req != "NAXXX":
                 if "Req" in req:
                     req = 1
-                if "Electives" in req:
+                if "Electives" in str(req):
                     req = int(req[0])
                 req1.append(req)
         classes.append(req1)
-
     return classes
 
 
@@ -129,7 +128,7 @@ def get_name(classnum: str) -> str:
             raw_data = r.json()
             classes = raw_data["value"]
             class_lists[abbr] = classes
-        filter(lambda x: x["Number"] == num, classes)
+        classes = list(filter(lambda x: x["Number"] == num, classes))
         return classes[0]["Title"]
 
     return "Error!"
