@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import Flask
 
-import util
+from util import load_csv, compare_tracks
 
 app = Flask(__name__)
 data = []
@@ -14,20 +14,11 @@ def index():
 
 @app.route("/<classone>/<classtwo>")
 def classes(classone, classtwo):
-    util.compare_tracks(classone, classtwo)
+    compare_tracks(classone, classtwo)
     return {
         "classone": classone,
         "classtwo": classtwo
     }
-
-
-def load_csv():
-    csvs = []
-    for file in util.tracks:
-        path = "./data/" + file + ".csv"
-        print(path)
-        list = util.get_class_list(pd.read_csv(path))
-        csvs.append(list)
 
 
 if __name__ == "__main__":
