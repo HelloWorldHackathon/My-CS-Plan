@@ -15,12 +15,18 @@ body {
 
 /* All element styling */
 h1,
-h2 {
+h2,
+h4 {
   color: #cfb991;
+}
+
+h4 {
+  margin-top: -2vh;
 }
 
 a {
   text-decoration: underline;
+  color: #9d9795;
 }
 
 /* Large containers (content and footer) */
@@ -46,7 +52,6 @@ a {
 .footer a {
   justify-content: center;
   align-items: center;
-  color: #9d9795;
 }
 
 /* Content specific styling */
@@ -62,7 +67,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 66vw;
+  max-width: 71vw;
 }
 
 .item {
@@ -177,7 +182,47 @@ th {
 
 td {
   border: 1px solid black;
-  background-color: #C4BFC0;
+  background-color: #c4bfc0;
   text-align: left;
   padding: 8px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  color: black;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
