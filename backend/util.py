@@ -31,8 +31,3 @@ def get_name(classnum: str) -> str:
                 return cls["Title"]
 
     return "Error!"
-
-
-if __name__ == "__main__":
-    print(get_name("CS 18000"))
-    print(get_name("CS 489/490-DSO"))
