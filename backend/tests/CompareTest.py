@@ -4,7 +4,7 @@ from flaskr import util
 class CompareTest(unittest.TestCase):
     def test_output(self):
         csv = util.load_csv()
-        util.compare_tracks(csv[1], csv[2])
+        util.compare_tracks(csv[2], csv[3])
         self.assertNotEqual(0, 1)
 
 

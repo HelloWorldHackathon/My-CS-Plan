@@ -66,8 +66,17 @@ def compare_tracks(track1, track2):
     remove_singles(track2, track1,classes)
     remove_no_overlap(track1, track2, classes)
     remove_no_overlap(track2, track1, classes)
-    for course in classes:
-        print(course)
+
+    track1[-1] = list_remaining_electives(track1, classes)
+
+    track2[-1] = list_remaining_electives(track2, classes)
+
+    classes.extend([track1[-1]])
+    classes.extend([track2[-1]])
+    print(classes)
+    return classes
+
+
 
 
 def remove_no_overlap(track1, track2, classes):
@@ -170,3 +179,36 @@ def format_schedule(schedule_item):
     else:
         return " OR ".join(list(map(lambda x: get_name(x), schedule_item)))
 
+def list_remaining_electives(track, classes):
+    electives_list = track[-1][1:]
+    number_of_electives = track[-1][0]
+    to_remove = []
+    for elective in electives_list:
+
+        for course_index in range(len(classes)):
+            course = classes[course_index]
+            if type(course) == str:
+                if course == elective:
+                    to_remove.append(elective)
+                    number_of_electives -= 1
+                    continue
+            else:
+                sub_course_index = 0
+                while sub_course_index < len(course):
+                    sub_course = course[sub_course_index]
+                    if sub_course == elective:
+                        to_remove.append(elective)
+                        number_of_electives -= 1
+                        classes[course_index] = sub_course
+                        sub_course_index = 100
+                    sub_course_index += 1
+            course_index += 1
+        if number_of_electives <= 0:
+            break
+    for course in to_remove:
+        electives_list.remove(course)
+    to_remove.clear()
+    electives = [number_of_electives]
+    electives.extend(electives_list)
+
+    return electives
