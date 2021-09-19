@@ -150,6 +150,43 @@ def get_name(classnum: str) -> str:
 
     return "Error!"
 
+
+def get_hours(classnum: str) -> str:
+    # handle edge cases
+    if classnum == "NAXXX":
+        return classnum
+    if re.match("CS \\dXX", classnum):
+        return "Unknown!"
+    if "-" in classnum:
+        return "Unknown!"
+    if "/" in classnum:
+        return "Unknown!"
+    if "CS 490" in classnum:
+        return "Unknown!"
+    if "EPICS" in classnum:
+        return "Unknown!"
+
+    if re.match("\\w+ \\d+", classnum):
+        split = classnum.split(" ")
+        abbr = split[0]
+        num = split[1]
+
+        # add the 00 at the end
+        if len(str(num)) == 3:
+            num = str(num) + "00"
+
+        if abbr in class_lists.keys():
+            classes = class_lists[abbr]
+        else:
+            r = requests.get(classes_api.replace("<abbr>", abbr))
+            raw_data = r.json()
+            classes = raw_data["value"]
+            class_lists[abbr] = classes
+        classes = list(filter(lambda x: x["Number"] == num, classes))
+        return classes[0]["CreditHours"]
+
+    return "Error!"
+
 def remove_singles(track1, track2, classes):
     # loops through all the requirements in the first track to see if any reqs only have one option
 
