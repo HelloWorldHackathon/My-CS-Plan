@@ -229,13 +229,7 @@ function getTrack(event) {
     }
   }
 
-  var url; 
-  if (process.env.NODE_ENV == "development") {
-    url = "http://127.0.0.1:8081"
-  } else {
-    url = "http://backend:8081"
-  }
-  console.log(url)
+  var url = "http://127.0.0.1:8081";
 
   fetch(`${url}/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
     method: "GET",
