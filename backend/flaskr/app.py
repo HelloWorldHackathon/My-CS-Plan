@@ -1,7 +1,7 @@
 import pandas as pd
 from flask import Flask
 
-from util import compare_tracks, load_csv, get_name, get_hours
+from util import compare_tracks, load_csv, format_schedule, get_hours
 
 app = Flask(__name__)
 data = []
@@ -9,33 +9,38 @@ data = []
 
 @app.route("/<classone>/<classtwo>")
 def classes(classone, classtwo):
-    data = {}
+    dd = {}
 
     # ["name", [1, electives], [2, electives]]
-    compared = compare_tracks(classone, classtwo)
-    courses = compared[0]
-    courses = list(map(lambda x: [x, get_name(x), get_hours(x)], courses))
-    data["courses"] = courses
+    compared = compare_tracks(data[int(classone)], data[int(classtwo)])
 
-    electives = compared[1]
-    required = electives[0]
-    electives.pop(0)
+    electives1 = compared[-2]
+    electives2 = compared[-1]
+
+    compared.remove(electives1)
+    compared.remove(electives2)
+
+    courses = compared
+    courses = list(map(lambda x: [" OR ".join(x) if type(x) != str else x, format_schedule(x), str(get_hours(x))], courses))
+    dd["courses"] = courses
+
+    required = electives1[0]
+    electives1.pop(0)
     electives_data = {
         "required": required,
-        "courses": list(map(lambda x: [x, get_name(x), get_hours(x)], courses)) 
+        "courses": list(map(lambda x: [" OR ".join(x) if type(x) != str else x, format_schedule(x), str(get_hours(x))], electives1)) 
     }
-    data["electives1"] = electives_data
+    dd["electives1"] = electives_data
 
-    electives = compared[2]
-    required = electives[0]
-    electives.pop(0)
+    required = electives2[0]
+    electives2.pop(0)
     electives_data = {
         "required": required,
-        "courses": list(map(lambda x: [x, get_name(x), get_hours(x)], courses)) 
+        "courses": list(map(lambda x: [" OR ".join(x) if type(x) != str else x, format_schedule(x), str(get_hours(x))], electives2)) 
     }
-    data["electives2"] = electives_data
+    dd["electives2"] = electives_data
 
-    return data
+    return dd
 
 
 if __name__ == "__main__":

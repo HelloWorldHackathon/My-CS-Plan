@@ -62,8 +62,8 @@ def compare_tracks(track1, track2):
     classes = []
 
     remove_singles(track1, track2, classes)
-
     remove_singles(track2, track1,classes)
+
     remove_no_overlap(track1, track2, classes)
     remove_no_overlap(track2, track1, classes)
 
@@ -73,10 +73,7 @@ def compare_tracks(track1, track2):
 
     classes.extend([track1[-1]])
     classes.extend([track2[-1]])
-    print(classes)
     return classes
-
-
 
 
 def remove_no_overlap(track1, track2, classes):
@@ -118,7 +115,7 @@ def get_name(classnum: str) -> str:
     # handle edge cases
     if classnum == "NAXXX":
         return classnum
-    if re.match("CS \\dXX", classnum):
+    if re.match("CS \\dXX", str(classnum)):
         return classnum
     if "-" in classnum:
         return classnum
@@ -129,7 +126,7 @@ def get_name(classnum: str) -> str:
     if "EPICS" in classnum:
         return classnum
 
-    if re.match("\\w+ \\d+", classnum):
+    if re.match("\\w+ \\d+", str(classnum)):
         split = classnum.split(" ")
         abbr = split[0]
         num = split[1]
@@ -148,14 +145,14 @@ def get_name(classnum: str) -> str:
         classes = list(filter(lambda x: x["Number"] == num, classes))
         return classes[0]["Title"]
 
-    return "Error!"
+    return "Unknown!"
 
 
 def get_hours(classnum: str) -> str:
     # handle edge cases
     if classnum == "NAXXX":
         return classnum
-    if re.match("CS \\dXX", classnum):
+    if re.match("CS \\dXX", str(classnum)):
         return "Unknown!"
     if "-" in classnum:
         return "Unknown!"
@@ -166,7 +163,7 @@ def get_hours(classnum: str) -> str:
     if "EPICS" in classnum:
         return "Unknown!"
 
-    if re.match("\\w+ \\d+", classnum):
+    if re.match("\\w+ \\d+", str(classnum)):
         split = classnum.split(" ")
         abbr = split[0]
         num = split[1]
@@ -185,7 +182,8 @@ def get_hours(classnum: str) -> str:
         classes = list(filter(lambda x: x["Number"] == num, classes))
         return classes[0]["CreditHours"]
 
-    return "Error!"
+    return "Unknown!"
+
 
 def remove_singles(track1, track2, classes):
     # loops through all the requirements in the first track to see if any reqs only have one option
@@ -206,8 +204,6 @@ def remove_singles(track1, track2, classes):
         track1.remove(to_remove[i])
     to_remove.clear()
     return classes
-
-
 
 
 def format_schedule(schedule_item):
@@ -240,7 +236,7 @@ def list_remaining_electives(track, classes):
                         sub_course_index = 100
                     sub_course_index += 1
             course_index += 1
-        if number_of_electives <= 0:
+        if int(number_of_electives) <= 0:
             break
     for course in to_remove:
         electives_list.remove(course)
