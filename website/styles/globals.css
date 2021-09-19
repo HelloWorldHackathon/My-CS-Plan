@@ -20,10 +20,6 @@ h4 {
   color: #cfb991;
 }
 
-h4 {
-  margin-top: -2vh;
-}
-
 a {
   text-decoration: underline;
   color: #9d9795;
@@ -171,6 +167,7 @@ a {
 table {
   border-collapse: collapse;
   width: 100%;
+  color: black;
 }
 
 th {

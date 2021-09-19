@@ -243,21 +243,39 @@ function getTrack() {
         resultCourses += "<tr>";
         for(let j=0; j<3; j++)
         {
-          console.log(coursesArray.courses[j][i]);
           resultCourses += "<td>" + coursesArray.courses[i][j] + "</td>";
         }
         resultCourses += "</tr>";
       }
       resultCourses += "</table>";
 
+      resultCourses += "<h4>Elective Bank 1 (Required: " + coursesArray.electives1.required + ").</h4>" 
+
       resultCourses += "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
-      for(let i=0; i<coursesArray.electives1.length; i++)
+  
+      for(let i=0; i<coursesArray.electives1.courses.length; i++)
       {
         resultCourses += "<tr>";
         for(let j=0; j<3; j++)
         {
-          console.log(coursesArray.electives1[j][i]);
-          resultCourses += "<td>" + coursesArray.electives1[i][j] + "</td>";
+          console.log(coursesArray.electives1.courses.length);
+          resultCourses += "<td>" + coursesArray.electives1.courses[i][j] + "</td>";
+        }
+        resultCourses += "</tr>";
+      }
+      resultCourses += "</table>";
+
+      resultCourses += "<h4>Elective Bank 2 (Required: " + coursesArray.electives2.required + ").</h4>" 
+
+      resultCourses += "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
+  
+      for(let i=0; i<coursesArray.electives2.courses.length; i++)
+      {
+        resultCourses += "<tr>";
+        for(let j=0; j<3; j++)
+        {
+          console.log(coursesArray.electives2.courses.length);
+          resultCourses += "<td>" + coursesArray.electives2.courses[i][j] + "</td>";
         }
         resultCourses += "</tr>";
       }
