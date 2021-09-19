@@ -204,7 +204,7 @@ const tracksMap = new Map();
 tracksMap.set('(Algorithmic) Foundations Track', 0);
 tracksMap.set('Computational Science and Engineering Track', 1);
 tracksMap.set('Computer Graphics and Visualization Track', 2);
-tracksMap.set('Database and Information Systems Track"', 3);
+tracksMap.set('Database and Information Systems Track', 3);
 tracksMap.set('Machine Intelligence Track', 4);
 tracksMap.set('Programming Language Track', 5);
 tracksMap.set('Security Track', 6);
