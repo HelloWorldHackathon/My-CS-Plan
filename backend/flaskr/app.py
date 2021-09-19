@@ -8,10 +8,10 @@ data = []
 
 
 @app.route("/<classone>/<classtwo>")
-def classes(classone: int, classtwo: int):
-    # ["name", [1, electives], [2, electives]]
+def classes(classone, classtwo):
     data = {}
 
+    # ["name", [1, electives], [2, electives]]
     compared = compare_tracks(classone, classtwo)
     courses = compared[0]
     courses = list(map(lambda x: [x, get_name(x), get_hours(x)], courses))
@@ -36,7 +36,6 @@ def classes(classone: int, classtwo: int):
     data["electives2"] = electives_data
 
     return data
-
 
 
 if __name__ == "__main__":
