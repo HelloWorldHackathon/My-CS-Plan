@@ -4,7 +4,7 @@ WORKDIR /website
 
 COPY . .
 
-RUN "npm install"
+RUN npm install
 
 EXPOSE 3000
 
