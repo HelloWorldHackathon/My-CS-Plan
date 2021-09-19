@@ -1,7 +1,8 @@
+import json
+
 from flask import Flask
 
 from util import compare_tracks, format_schedule, get_hours, load_csv
-import json
 
 app = Flask(__name__)
 data = []
@@ -48,8 +49,10 @@ if __name__ == "__main__":
 
     # app.run(host="0.0.0.0", port=8081)
 
-    for i in range(0,9 ):
+    for i in range(0, 9):
         for j in range(0, 9):
+            if (i == j):
+                continue
             with open(f"nums/{i}_{j}.json", 'w') as f:
                 dd = classes(i, j)
                 f.write(json.dumps(dd))
