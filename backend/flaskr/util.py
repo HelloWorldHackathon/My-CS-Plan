@@ -24,9 +24,12 @@ def get_class_list(track: pd.DataFrame):
     shape = track.shape
     for i in range(shape[0]):
         req1 = []
+
         for j in range(shape[1]):
             req = track.iat[i, j]
-            if req != "NAXXX" and not "Req" in req:
+            if req != "NAXXX":
+                if "Req" in req:
+                    req = 1
                 if "Electives" in req:
                     req = int(req[0])
                 req1.append(req)
@@ -43,7 +46,6 @@ def get_raw_classlist(data):
             for c in b:
                 cls.append(c)
     return cls
-    
 
 
 def load_csv():
@@ -56,6 +58,43 @@ def load_csv():
 
 
 def compare_tracks(track1, track2):
+    classes = []
+    to_remove = []
+    # loops through all the requirements in the first track to see if any reqs only have one option
+    for requirement1 in track1:
+        if len(requirement1) == 2:
+            if not requirement1[1] in classes:
+                classes.append(requirement1[1])
+                to_remove.append(requirement1)
+                for req_number in range(len(track2) - 1):
+                    req2 = track2[req_number]
+                    for course in req2:
+                        if course is requirement1[1]:
+                            track2.pop(req_number)
+    # removes requirements satisfied from previous loop from track 1
+    for i in range(len(to_remove)):
+        track1.remove(to_remove[i])
+
+    to_remove.clear()
+    for requirement2 in track2:
+        if len(requirement2) == 2:
+            if not requirement2[1] in classes:
+                classes.append(requirement2[1])
+                to_remove.append(requirement2)
+                for req_number in range(len(track1) - 1):
+                    req2 = track1[req_number]
+                    for course in req2:
+                        if course is requirement2[1]:
+                            track1.pop(req_number)
+    # removes requirements satisfied from previous loop from track 1
+    for i in range(len(to_remove)):
+        track2.remove(to_remove[i])
+    to_remove.clear()
+
+    for requirement1 in range(len(track2) - 1):
+        for course1 in range(1, len(requirement1)):
+            print()
+
     print()
 
 
@@ -89,7 +128,7 @@ def get_name(classnum: str) -> str:
             r = requests.get(classes_api.replace("<abbr>", abbr))
             raw_data = r.json()
             classes = raw_data["value"]
-            class_lists[abbr]=classes
+            class_lists[abbr] = classes
         filter(lambda x: x["Number"] == num, classes)
         return classes[0]["Title"]
 
