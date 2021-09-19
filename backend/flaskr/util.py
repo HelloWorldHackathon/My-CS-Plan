@@ -73,6 +73,8 @@ def compare_tracks(track1, track2):
 
     classes.extend([track1[-1]])
     classes.extend([track2[-1]])
+
+    compare_electives(classes)
     print(classes)
     return classes
 
@@ -180,7 +182,9 @@ def format_schedule(schedule_item):
         return " OR ".join(list(map(lambda x: get_name(x), schedule_item)))
 
 def list_remaining_electives(track, classes):
-    electives_list = track[-1][1:]
+
+    tracks = track[-1]
+    electives_list = tracks[1:]
     number_of_electives = track[-1][0]
     to_remove = []
     for elective in electives_list:
@@ -212,3 +216,31 @@ def list_remaining_electives(track, classes):
     electives.extend(electives_list)
 
     return electives
+def compare_electives(courses):
+    track1_electives = courses[-1]
+    track2_electives = courses[-2]
+    to_remove = []
+    track1_electives_num = track1_electives[0]
+    track2_electives_num = track2_electives[0]
+    for elective1_num in range(1, len(track1_electives)):
+        elective1 = track1_electives[elective1_num]
+        for elective2_num in range(1, len(track2_electives)):
+            elective2 = track2_electives[elective2_num]
+            if track1_electives_num <= 0 or track2_electives_num <= 0:
+
+                break
+            if elective1 == elective2:
+                to_remove.append(elective1)
+                track2_electives_num -= 1
+                track1_electives_num -= 1
+    for course in to_remove:
+        courses.insert(-2, course)
+        track1_electives.remove(course)
+        track2_electives.remove(course)
+    to_remove.clear()
+    track1_electives[0] = track1_electives_num
+    track2_electives[0] = track2_electives_num
+    courses[-1] = track1_electives
+    courses[-2] = track2_electives
+    return courses
+
