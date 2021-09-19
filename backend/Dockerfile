@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 EXPOSE 8081
 
-ENTRYPOINT [ "python", "flaskr/app.py" ]
+ENTRYPOINT [ "python", "-m", "flaskr.app" ]
