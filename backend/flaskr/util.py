@@ -75,7 +75,6 @@ def compare_tracks(track1, track2):
     classes.extend([track2[-1]])
 
     compare_electives(classes)
-    print(classes)
     return classes
 
 
@@ -205,7 +204,6 @@ def list_remaining_electives(track, classes):
                         sub_course_index = 100
                     sub_course_index += 1
             course_index += 1
-        print(number_of_electives)
         if number_of_electives <= 0:
             break
     for course in to_remove:
