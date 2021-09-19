@@ -2,12 +2,10 @@ FROM python:3.9-buster
 
 WORKDIR /app
 
-COPY app.py .
-COPY requirements.txt .
-COPY data/ .
+COPY . .
 
-RUN pip install -r -requirements.txt
+RUN pip install -r requirements.txt
 
 EXPOSE 8081
 
-ENTRYPOINT [ "python", "app.py" ]
+ENTRYPOINT [ "python", "flaskr/app.py" ]
