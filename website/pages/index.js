@@ -230,6 +230,9 @@ function getTrack() {
     }
   }
   console.log(trackNumberArray);
+  fetch("localhost:8081/" + trackNumberArray[0] + "/" + trackNumberArray[1])
+  .then(response => response.json())
+  .then(data => console.log(data));
 
   // Generates table from JSON optimized classes list and inserts it below
 
@@ -284,3 +287,4 @@ function loadModal() {
     }
   };
 }
+
