@@ -3,7 +3,7 @@ import { useState } from "react";
 
 export default function Home() {
   return (
-    <div class="container">
+    <div className="container">
       <Head>
         <title>My CS Plans</title>
         <meta
@@ -12,7 +12,7 @@ export default function Home() {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1 class="title">Welcome to My CS Plans</h1>
+      <h1 className="title">Welcome to My CS Plans</h1>
 
       <h1>Concentrations:</h1>
       <h4>
@@ -22,9 +22,9 @@ export default function Home() {
         </a>
       </h4>
 
-      <div id="myModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
+      <div id="myModal" className="modal">
+        <div className="modal-content">
+          <span className="close">&times;</span>
           <p>
             Optimizing the least possible amount of classes between two
             concentrations is already super difficult! Trying to do so for
@@ -45,9 +45,9 @@ export default function Home() {
       </div>
 
       <form>
-        <div class="threebythree">
-          <div class="item">
-            <label class="checkboxList">
+        <div className="threebythree">
+          <div className="item">
+            <label className="checkboxList">
               (Algorithmic) Foundations
               <input
                 id="(Algorithmic) Foundations"
@@ -56,11 +56,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("(Algorithmic) Foundations")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Computational Science and Engineering
               <input
                 id="Computational Science and Engineering"
@@ -69,11 +69,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Computational Science and Engineering")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Computer Graphics and Visualization
               <input
                 id="Computer Graphics and Visualization"
@@ -82,11 +82,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Computer Graphics and Visualization")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Database and Information Systems
               <input
                 id="Database and Information Systems"
@@ -95,12 +95,12 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Database and Information Systems")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
 
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Machine Intelligence
               <input
                 id="Machine Intelligence"
@@ -109,11 +109,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Machine Intelligence")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Programming Language
               <input
                 id="Programming Language"
@@ -122,11 +122,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Programming Language")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Security
               <input
                 id="Security"
@@ -135,11 +135,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Security")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Software Engineering
               <input
                 id="Software Engineering"
@@ -148,11 +148,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Software Engineering")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
+          <div className="item">
+            <label className="checkboxList">
               Systems Software
               <input
                 id="Systems Software"
@@ -161,11 +161,11 @@ export default function Home() {
                 name="check"
                 onClick={() => onlyTwo("Systems Software")}
               />
-              <span class="checkmark"></span>
+              <span className="checkmark"></span>
             </label>
           </div>
         </div>
-        <button class="submit-button" type="button" onClick={() => getTrack()}>
+        <button className="submit-button" type="button" onClick={() => getTrack()}>
           Submit
         </button>
       </form>
@@ -177,12 +177,12 @@ export default function Home() {
         <div id="tableArea"></div>
       </div>
 
-      <footer class="footer">
+      <footer className="footer">
         <p>
-          <a href="https://github.com/HelloWorldHackathon/" class="inlineLink">
+          <a href="https://github.com/HelloWorldHackathon/" className="inlineLink">
             Built
           </a>{" "}
-          by James, Jonathan, Noam, and, Pranav as part of Purdue's 2021 Hello
+          by James, Jonathan, Noam, and, Pranav as part of Purdue&apos;s 2021 Hello
           World Hackathon.
         </p>
       </footer>
