@@ -227,43 +227,43 @@ function getTrack() {
     }
   }
 
-  fetch(
-    `http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`,
-    {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  )
+  fetch(`http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
     .then((response) => response.text())
     .then((data) => {
-      const courses = data["courses"]
+      let coursesArray = JSON.parse(data);
+      
+      let resultCourses = "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
+      for(let i=0; i<coursesArray.courses.length; i++)
+      {
+        resultCourses += "<tr>";
+        for(let j=0; j<3; j++)
+        {
+          console.log(coursesArray.courses[j][i]);
+          resultCourses += "<td>" + coursesArray.courses[i][j] + "</td>";
+        }
+        resultCourses += "</tr>";
+      }
+      resultCourses += "</table>";
 
-      const electives1 = data["electives1"]
-      const e1_required = electives1["required"]
-      const e1_courses = electives1["courses"]
-
-      const electives2 = data["electives2"]
-      const e2_required = electives2["required"]
-      const e2_courses = electives2["courses"]
-
-      document.getElementById("tableArea").innerHTML = <>
-      <p>{courses}</p>
-      <p>{e1_required}</p>
-      <p>{e1_courses}</p>
-      <p>{e2_required}</p>
-      <p>{e2_courses}</p>
-      </>
+      resultCourses += "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
+      for(let i=0; i<coursesArray.electives1.length; i++)
+      {
+        resultCourses += "<tr>";
+        for(let j=0; j<3; j++)
+        {
+          console.log(coursesArray.electives1[j][i]);
+          resultCourses += "<td>" + coursesArray.electives1[i][j] + "</td>";
+        }
+        resultCourses += "</tr>";
+      }
+      resultCourses += "</table>";
+      document.getElementById("tableArea").innerHTML = resultCourses;
     });
-
-  // Generates table from JSON optimized classes list and inserts it below
-
-  // let table = "";
-  /* INSERT LOOP CODE FOR JSON HERE*/
-
-  //Sample table for visual purposes
-  // table = document.getElementById("tableArea").innerHTML = table;
 }
 
 function onlyTwo(id) {
