@@ -1,6 +1,4 @@
 import Head from "next/head";
-const fs = require('fs');
-
 
 export default function Home() {
   return (
