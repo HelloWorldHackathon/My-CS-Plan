@@ -1,7 +1,9 @@
 import re
+from typing import List
 
 import pandas as pd
 import requests
+from requests.api import get
 
 classes_api = "http://api.purdue.io/odata/Courses?%24filter=Subject/Abbreviation%20eq%20%27<abbr>%27&%24orderby=Number%20asc"
 
@@ -34,7 +36,6 @@ def get_class_list(track: pd.DataFrame):
                     req = int(req[0])
                 req1.append(req)
         classes.append(req1)
-
     return classes
 
 
@@ -135,10 +136,11 @@ def get_name(classnum: str) -> str:
             raw_data = r.json()
             classes = raw_data["value"]
             class_lists[abbr] = classes
-        filter(lambda x: x["Number"] == num, classes)
+        classes = list(filter(lambda x: x["Number"] == num, classes))
         return classes[0]["Title"]
 
     return "Error!"
+
 def remove_singles(track1, track2, classes):
     # loops through all the requirements in the first track to see if any reqs only have one option
 
@@ -158,4 +160,13 @@ def remove_singles(track1, track2, classes):
         track1.remove(to_remove[i])
     to_remove.clear()
     return classes
+
+
+
+
+def format_schedule(schedule_item):
+    if type(schedule_item) == str:
+        return get_name(schedule_item)
+    else:
+        return " OR ".join(list(map(lambda x: get_name(x), schedule_item)))
 
