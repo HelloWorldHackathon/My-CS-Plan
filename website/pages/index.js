@@ -287,6 +287,9 @@ function getTrack() {
       }
       resultCourses += "</table>";
       document.getElementById("tableArea").innerHTML = resultCourses;
+    })
+    .catch(err => {
+      console.log(err)
     });
 }
 
