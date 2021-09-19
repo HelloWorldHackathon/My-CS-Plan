@@ -165,7 +165,7 @@ export default function Home() {
             </label>
           </div>
         </div>
-        <button className="submit-button" type="button" onClick={() => getTrack()}>
+        <button className="submit-button" type="button" onClick={(event) => getTrack(event)}>
           Submit
         </button>
       </form>
@@ -206,7 +206,9 @@ tracksMap.set("Security Track", 6);
 tracksMap.set("Software Engineering Track", 7);
 tracksMap.set("Systems Software Track", 8);
 
-function getTrack() {
+function getTrack(event) {
+  event.preventDefault();
+
   var checkBox = document.getElementById("myCheck");
 
   // Gets names of tracks student selected and create a string of them, before setting title to the names of selected tracks
