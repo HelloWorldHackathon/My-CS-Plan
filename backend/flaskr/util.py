@@ -207,6 +207,7 @@ def list_remaining_electives(track, classes):
                         sub_course_index = 100
                     sub_course_index += 1
             course_index += 1
+        print(number_of_electives)
         if number_of_electives <= 0:
             break
     for course in to_remove:
@@ -243,4 +244,38 @@ def compare_electives(courses):
     courses[-1] = track1_electives
     courses[-2] = track2_electives
     return courses
+def get_hours(classnum: str) -> str:
+    # handle edge cases
+    if classnum == "NAXXX":
+        return classnum
+    if re.match("CS \\dXX", str(classnum)):
+        return "Unknown!"
+    if "-" in classnum:
+        return "Unknown!"
+    if "/" in classnum:
+        return "Unknown!"
+    if "CS 490" in classnum:
+        return "Unknown!"
+    if "EPICS" in classnum:
+        return "Unknown!"
 
+    if re.match("\\w+ \\d+", str(classnum)):
+        split = classnum.split(" ")
+        abbr = split[0]
+        num = split[1]
+
+        # add the 00 at the end
+        if len(str(num)) == 3:
+            num = str(num) + "00"
+
+        if abbr in class_lists.keys():
+            classes = class_lists[abbr]
+        else:
+            r = requests.get(classes_api.replace("<abbr>", abbr))
+            raw_data = r.json()
+            classes = raw_data["value"]
+            class_lists[abbr] = classes
+        classes = list(filter(lambda x: x["Number"] == num, classes))
+        return classes[0]["CreditHours"]
+
+    return "Unknown!"
