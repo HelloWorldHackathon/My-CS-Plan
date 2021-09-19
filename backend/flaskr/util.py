@@ -79,8 +79,6 @@ def compare_tracks(track1, track2):
     return classes
 
 
-
-
 def remove_no_overlap(track1, track2, classes):
 
     to_remove = []
@@ -152,6 +150,7 @@ def get_name(classnum: str) -> str:
 
     return "Error!"
 
+
 def remove_singles(track1, track2, classes):
     # loops through all the requirements in the first track to see if any reqs only have one option
 
@@ -173,13 +172,12 @@ def remove_singles(track1, track2, classes):
     return classes
 
 
-
-
 def format_schedule(schedule_item):
     if type(schedule_item) == str:
         return get_name(schedule_item)
     else:
         return " OR ".join(list(map(lambda x: get_name(x), schedule_item)))
+
 
 def list_remaining_electives(track, classes):
 
@@ -217,6 +215,8 @@ def list_remaining_electives(track, classes):
     electives.extend(electives_list)
 
     return electives
+
+    
 def compare_electives(courses):
     track1_electives = courses[-1]
     track2_electives = courses[-2]
@@ -244,6 +244,8 @@ def compare_electives(courses):
     courses[-1] = track1_electives
     courses[-2] = track2_electives
     return courses
+
+
 def get_hours(classnum: str) -> str:
     # handle edge cases
     if classnum == "NAXXX":

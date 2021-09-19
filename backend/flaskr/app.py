@@ -5,20 +5,23 @@ from flaskr import util
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-data = []
+app.data = []
+
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
-@cross_origin()
+
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
+
 @app.route("/<int:classone>/<int:classtwo>")
 def classes(classone, classtwo):
     dd = {}
 
     # ["name", [1, electives], [2, electives]]
-    compared = util.compare_tracks(data[max(int(classone), int(classtwo))], data[min(int(classtwo), int(classone))])
+    compared = util.compare_tracks(app.data[max(int(classone), int(classtwo))], app.data[min(int(classtwo), int(classone))])
 
     electives1 = compared[-2]
     electives2 = compared[-1]
@@ -47,11 +50,12 @@ def classes(classone, classtwo):
     }
     dd["electives2"] = electives_data
 
+    app.data = util.load_csv()
     return dd
 
 
 if __name__ == "__main__":
-    data = util.load_csv()
+    app.data = util.load_csv()
 
     app.run(host="0.0.0.0", port=8081)
 
