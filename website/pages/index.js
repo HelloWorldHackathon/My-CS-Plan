@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
   return (
@@ -164,11 +165,7 @@ export default function Home() {
             </label>
           </div>
         </div>
-        <button
-          class="submit-button"
-          type="button"
-          onClick={() => getTrack()}
-        >
+        <button class="submit-button" type="button" onClick={() => getTrack()}>
           Submit
         </button>
       </form>
@@ -197,17 +194,17 @@ if (typeof window !== "undefined") {
   loadModal();
 }
 
-//Sets up map to correspond track name to it's internal number 
+//Sets up map to correspond track name to it's internal number
 const tracksMap = new Map();
-tracksMap.set('(Algorithmic) Foundations Track', 0);
-tracksMap.set('Computational Science and Engineering Track', 1);
-tracksMap.set('Computer Graphics and Visualization Track', 2);
-tracksMap.set('Database and Information Systems Track', 3);
-tracksMap.set('Machine Intelligence Track', 4);
-tracksMap.set('Programming Language Track', 5);
-tracksMap.set('Security Track', 6);
-tracksMap.set('Software Engineering Track', 7);
-tracksMap.set('Systems Software Track', 8);
+tracksMap.set("(Algorithmic) Foundations Track", 0);
+tracksMap.set("Computational Science and Engineering Track", 1);
+tracksMap.set("Computer Graphics and Visualization Track", 2);
+tracksMap.set("Database and Information Systems Track", 3);
+tracksMap.set("Machine Intelligence Track", 4);
+tracksMap.set("Programming Language Track", 5);
+tracksMap.set("Security Track", 6);
+tracksMap.set("Software Engineering Track", 7);
+tracksMap.set("Systems Software Track", 8);
 
 function getTrack() {
   var checkBox = document.getElementById("myCheck");
@@ -226,21 +223,21 @@ function getTrack() {
   let trackNumberArray = [];
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked == true) {
-      trackNumberArray.push(tracksMap.get((checkboxes[i].value) + " Track"))
+      trackNumberArray.push(tracksMap.get(checkboxes[i].value + " Track"));
     }
   }
 
-  let comparisonArray = []; 
-  fetch(`http://10.186.57.122:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`,
+  fetch(
+    `http://10.186.57.122:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`,
     {
       method: "GET",
       headers: {
-        "Content-Type": "application/json"
-      }
-    })
-    .then(response => response.text())
-    .then(data => console.log(data));
-
+        "Content-Type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.text())
+    .then((data) => console.log(data));
 
   // Generates table from JSON optimized classes list and inserts it below
 
@@ -248,9 +245,7 @@ function getTrack() {
   /* INSERT LOOP CODE FOR JSON HERE*/
 
   //Sample table for visual purposes
-  table =
-    
-  document.getElementById("tableArea").innerHTML = table;
+  table = document.getElementById("tableArea").innerHTML = table;
 }
 
 function onlyTwo(id) {
@@ -293,4 +288,3 @@ function loadModal() {
     }
   };
 }
-
