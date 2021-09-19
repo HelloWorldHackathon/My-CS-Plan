@@ -1,6 +1,6 @@
 import Head from "next/head";
+const fs = require('fs');
 
-const request = require('request');
 
 export default function Home() {
   return (
