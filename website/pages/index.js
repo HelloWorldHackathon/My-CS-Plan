@@ -241,7 +241,7 @@ function getTrack() {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.text())
+    .then((response) => response.json())
     .then((data) => {
       let coursesArray = JSON.parse(data);
       
