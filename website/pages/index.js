@@ -45,6 +45,19 @@ export default function Home() {
 
       <form>
         <div class="threebythree">
+        <div class="item">
+            <label class="checkboxList">
+              (Algorithmic) Foundations
+              <input
+                id="(Algorithmic) Foundations"
+                type="checkbox"
+                value="(Algorithmic) Foundations"
+                name="check"
+                onClick={() => onlyTwo("(Algorithmic) Foundations")}
+              />
+              <span class="checkmark"></span>
+            </label>
+          </div>
           <div class="item">
             <label class="checkboxList">
               Computational Science and Engineering
@@ -84,19 +97,7 @@ export default function Home() {
               <span class="checkmark"></span>
             </label>
           </div>
-          <div class="item">
-            <label class="checkboxList">
-              (Algorithmic) Foundations
-              <input
-                id="(Algorithmic) Foundations"
-                type="checkbox"
-                value="(Algorithmic) Foundations"
-                name="check"
-                onClick={() => onlyTwo("(Algorithmic) Foundations")}
-              />
-              <span class="checkmark"></span>
-            </label>
-          </div>
+          
           <div class="item">
             <label class="checkboxList">
               Machine Intelligence
@@ -166,7 +167,7 @@ export default function Home() {
         <button
           class="submit-button"
           type="button"
-          onClick={() => getTrack(" ")}
+          onClick={() => getTrack()}
         >
           Submit
         </button>
@@ -196,7 +197,19 @@ if (typeof window !== "undefined") {
   loadModal();
 }
 
-function getTrack(track) {
+//Sets up map to correspond track name to it's internal number 
+const tracksMap = new Map();
+tracksMap.set('(Algorithmic) Foundations Track', 0);
+tracksMap.set('Computational Science and Engineering Track', 1);
+tracksMap.set('Computer Graphics and Visualization Track', 2);
+tracksMap.set('Database and Information Systems Track"', 3);
+tracksMap.set('Machine Intelligence Track', 4);
+tracksMap.set('Programming Language Track', 5);
+tracksMap.set('Security Track', 6);
+tracksMap.set('Software Engineering Track', 7);
+tracksMap.set('Systems Software Track', 8);
+
+function getTrack() {
   var checkBox = document.getElementById("myCheck");
 
   // Gets names of tracks student selected and create a string of them, before setting title to the names of selected tracks
@@ -206,8 +219,17 @@ function getTrack(track) {
     trackList = trackList + checkbox.value + ", ";
   }
   trackList = trackList.slice(0, -2); //remove last comma
-  console.log(trackList);
   document.getElementById("titleArea").innerHTML = trackList;
+
+  var checkboxes = document.getElementsByName("check");
+
+  let trackNumberArray = []; 
+  for (let i = 0; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked == true) {
+      trackNumberArray.push(tracksMap.get((checkboxes[i].value) + " Track"))
+    }
+  }
+  console.log(trackNumberArray);
 
   // Generates table from JSON optimized classes list and inserts it below
 
