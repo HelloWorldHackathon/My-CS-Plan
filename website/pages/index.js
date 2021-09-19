@@ -227,7 +227,13 @@ function getTrack() {
     }
   }
 
-  fetch(`http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
+  var url = process.env.API_URL
+  if (url == null) {
+    url = "http://127.0.0.1:8081"
+  }
+  console.log(url)
+
+  fetch(`${url}/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
