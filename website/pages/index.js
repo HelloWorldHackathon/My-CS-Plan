@@ -45,7 +45,7 @@ export default function Home() {
 
       <form>
         <div class="threebythree">
-        <div class="item">
+          <div class="item">
             <label class="checkboxList">
               (Algorithmic) Foundations
               <input
@@ -97,7 +97,7 @@ export default function Home() {
               <span class="checkmark"></span>
             </label>
           </div>
-          
+
           <div class="item">
             <label class="checkboxList">
               Machine Intelligence
@@ -223,16 +223,22 @@ function getTrack() {
 
   var checkboxes = document.getElementsByName("check");
 
-  let trackNumberArray = []; 
+  let trackNumberArray = [];
   for (let i = 0; i < checkboxes.length; i++) {
     if (checkboxes[i].checked == true) {
       trackNumberArray.push(tracksMap.get((checkboxes[i].value) + " Track"))
     }
   }
-  console.log(trackNumberArray);
-  fetch("localhost:8081/" + trackNumberArray[0] + "/" + trackNumberArray[1])
-  .then(response => response.json())
-  .then(data => console.log(data));
+  fetch("https://google.com" ,
+    {
+      method: "GET",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    .then(response => response.text())
+    .then(data => console.log(data));
 
   // Generates table from JSON optimized classes list and inserts it below
 
