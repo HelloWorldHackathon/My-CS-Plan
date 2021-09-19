@@ -10,7 +10,7 @@ export default function Home() {
           content="An optimization web application for Purdue CS concentrations"
         />
         <link rel="icon" href="/favicon.ico" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
+        <meta httpEquiv="Content-Security-Policy" content="upgrade-insecure-requests" />
       </Head>
       <h1 className="title">Welcome to My CS Plans</h1>
 
