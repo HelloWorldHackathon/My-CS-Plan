@@ -230,16 +230,17 @@ function getTrack() {
     }
   }
 
-  fetch(`http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}/`,
+  let comparisonArray = []; 
+  fetch(`http://10.186.57.122:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`,
     {
       method: "GET",
-      mode: "cors",
       headers: {
         "Content-Type": "application/json"
       }
     })
     .then(response => response.text())
     .then(data => console.log(data));
+
 
   // Generates table from JSON optimized classes list and inserts it below
 
@@ -248,9 +249,7 @@ function getTrack() {
 
   //Sample table for visual purposes
   table =
-    table +
-    "<table>  <tr>    <th>Company</th>    <th>Contact</th>    <th>Country</th>  </tr>  <tr>    <td>Alfreds Futterkiste</td>    <td>Maria Anders</td>    <td>Germany</td>  </tr>  <tr>    <td>Centro comercial Moctezuma</td>    <td>Francisco Chang</td>    <td>Mexico</td>  </tr>  <tr>    <td>Ernst Handel</td>    <td>Roland Mendel</td>    <td>Austria</td>  </tr>  <tr>    <td>Island Trading</td>    <td>Helen Bennett</td>    <td>UK</td>  </tr>  <tr>    <td>Laughing Bacchus Winecellars</td>    <td>Yoshi Tannamuri</td>    <td>Canada</td>  </tr>  <tr>    <td>Magazzini Alimentari Riuniti</td>    <td>Giovanni Rovelli</td>    <td>Italy</td>  </tr></table>";
-
+    
   document.getElementById("tableArea").innerHTML = table;
 }
 

@@ -2,9 +2,13 @@ import json
 
 from flask import Flask
 from flaskr import util
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 data = []
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+@cross_origin()
 
 @app.route("/")
 def hello_world():
