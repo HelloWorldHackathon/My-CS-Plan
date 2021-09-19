@@ -30,7 +30,7 @@ def get_class_list(track: pd.DataFrame):
             if req != "NAXXX":
                 if "Req" in req:
                     req = 1
-                if "Electives" in req:
+                if "Electives" in str(req):
                     req = int(req[0])
                 req1.append(req)
         classes.append(req1)
@@ -59,43 +59,49 @@ def load_csv():
 
 def compare_tracks(track1, track2):
     classes = []
+
+    remove_singles(track1, track2, classes)
+
+    remove_singles(track2, track1,classes)
+    remove_no_overlap(track1, track2, classes)
+    remove_no_overlap(track2, track1, classes)
+    for course in classes:
+        print(course)
+
+
+def remove_no_overlap(track1, track2, classes):
+
     to_remove = []
-    # loops through all the requirements in the first track to see if any reqs only have one option
-    for requirement1 in track1:
-        if len(requirement1) == 2:
-            if not requirement1[1] in classes:
-                classes.append(requirement1[1])
-                to_remove.append(requirement1)
-                for req_number in range(len(track2) - 1):
-                    req2 = track2[req_number]
-                    for course in req2:
-                        if course is requirement1[1]:
-                            track2.pop(req_number)
+    for requirement1_index in range(len(track1) - 1):
+        requirement1 = track1[requirement1_index]
+        req1_in_Track2 = False
+        course1_index = 1
+        while course1_index < len(requirement1):
+            course1 = requirement1[course1_index]
+            requirement2_index = 0
+            while requirement2_index < len(track2)-1:
+                requirement2 = track2[requirement2_index]
+                course2_index = 1
+                while course2_index < len(requirement2):
+                    course2 = requirement2[course2_index]
+                    if course2 == course1:
+                        if not course2 in classes:
+                            classes.append(course2)
+                        req1_in_Track2 = True
+                        course2_index = 100
+                        requirement2_index = 100
+                        course1_index = 100
+                    course2_index += 1
+                requirement2_index += 1
+            course1_index +=1
+        if not req1_in_Track2:
+            classes.append(requirement1[1:])
+            to_remove.append(requirement1)
     # removes requirements satisfied from previous loop from track 1
     for i in range(len(to_remove)):
         track1.remove(to_remove[i])
-
     to_remove.clear()
-    for requirement2 in track2:
-        if len(requirement2) == 2:
-            if not requirement2[1] in classes:
-                classes.append(requirement2[1])
-                to_remove.append(requirement2)
-                for req_number in range(len(track1) - 1):
-                    req2 = track1[req_number]
-                    for course in req2:
-                        if course is requirement2[1]:
-                            track1.pop(req_number)
-    # removes requirements satisfied from previous loop from track 1
-    for i in range(len(to_remove)):
-        track2.remove(to_remove[i])
-    to_remove.clear()
-
-    for requirement1 in range(len(track2) - 1):
-        for course1 in range(1, len(requirement1)):
-            print()
-
-    print()
+    return classes
 
 
 def get_name(classnum: str) -> str:
@@ -133,3 +139,23 @@ def get_name(classnum: str) -> str:
         return classes[0]["Title"]
 
     return "Error!"
+def remove_singles(track1, track2, classes):
+    # loops through all the requirements in the first track to see if any reqs only have one option
+
+    to_remove = []
+    for requirement1 in track1:
+        if len(requirement1) == 2:
+            if not requirement1[1] in classes:
+                classes.append(requirement1[1])
+                to_remove.append(requirement1)
+                for req_number in range(len(track2) - 1):
+                    req2 = track2[req_number]
+                    for course in req2:
+                        if course == requirement1[1]:
+                            track2.pop(req_number)
+    # removes requirements satisfied from previous loop from track 1
+    for i in range(len(to_remove)):
+        track1.remove(to_remove[i])
+    to_remove.clear()
+    return classes
+
