@@ -227,12 +227,11 @@ function getTrack() {
     }
   }
 
-  var url = process.env.API_URL
-  console.log(process.env)
-  console.log(process.env.API_URL)
-  console.log(url)
-  if (url == null) {
+  var url; 
+  if (process.env.NODE_ENV == "development") {
     url = "http://127.0.0.1:8081"
+  } else {
+    url = "backend:8081"
   }
   console.log(url)
 
