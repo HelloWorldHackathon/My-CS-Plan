@@ -1,11 +1,9 @@
-import pandas as pd
 from flask import Flask
 
-from util import compare_tracks, load_csv, format_schedule, get_hours
+from util import compare_tracks, format_schedule, get_hours, load_csv
 
 app = Flask(__name__)
 data = []
-
 
 @app.route("/<classone>/<classtwo>")
 def classes(classone, classtwo):

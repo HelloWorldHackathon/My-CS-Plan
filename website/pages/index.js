@@ -1,5 +1,7 @@
 import Head from "next/head";
 
+const request = require('request');
+
 export default function Home() {
   return (
     <div class="container">
@@ -229,7 +231,8 @@ function getTrack() {
       trackNumberArray.push(tracksMap.get((checkboxes[i].value) + " Track"))
     }
   }
-  fetch("https://google.com" ,
+
+  fetch(`http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}/`,
     {
       method: "GET",
       mode: "cors",
