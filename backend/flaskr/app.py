@@ -1,3 +1,4 @@
+import copy
 import json
 
 from flask import Flask
@@ -19,9 +20,9 @@ def hello_world():
 @app.route("/<int:classone>/<int:classtwo>")
 def classes(classone, classtwo):
     dd = {}
-
+    local_data = copy.deepcopy(app.data)
     # ["name", [1, electives], [2, electives]]
-    compared = util.compare_tracks(app.data[max(int(classone), int(classtwo))], app.data[min(int(classtwo), int(classone))])
+    compared = util.compare_tracks(local_data[max(int(classone), int(classtwo))], local_data[min(int(classtwo), int(classone))])
 
     electives1 = compared[-2]
     electives2 = compared[-1]
@@ -50,7 +51,6 @@ def classes(classone, classtwo):
     }
     dd["electives2"] = electives_data
 
-    app.data = util.load_csv()
     return dd
 
 

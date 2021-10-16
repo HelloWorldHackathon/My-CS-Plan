@@ -226,8 +226,8 @@ function getTrack() {
       trackNumberArray.push(tracksMap.get(checkboxes[i].value + " Track"));
     }
   }
-
-  fetch(`http://127.0.0.1:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
+  //Change the IP with the IP running on the deploy target. Currently for Noam's dorm's ethernet port
+  fetch(`http://128.211.242.212:8081/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
