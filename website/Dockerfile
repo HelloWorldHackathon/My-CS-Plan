@@ -8,4 +8,6 @@ RUN npm install
 
 EXPOSE 3000
 
-ENTRYPOINT [ "npm", "run", "dev" ]
+RUN npm run build
+
+ENTRYPOINT [ "npm", "run", "start" ]
