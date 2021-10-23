@@ -229,24 +229,22 @@ function getTrack(event) {
     }
   }
 
-  var url; 
-  if (process.env.NODE_ENV == "development") {
-    url = "http://127.0.0.1:8081"
-  } else {
-    url = "http://192.168.32.2:8081"
-  }
-  console.log(url)
-
-  fetch(`${url}/${trackNumberArray[0]}/${trackNumberArray[1]}`, {
-    method: "GET",
+  fetch(`/api/calculatecourses`, {
+    method: "POST",
+    body: JSON.stringify(trackNumberArray),
     headers: {
       "Content-Type": "application/json",
     },
   })
     .then((response) => response.json())
-    .then((data) => {
-      let coursesArray = JSON.parse(data);
-      
+    .then((jsonRes) => {
+      if(!jsonRes.success) {
+        console.log("Error: " + jsonRes.errorMsg);
+        return;
+      }
+      let data = jsonRes.data;
+      let coursesArray = data;
+
       let resultCourses = "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
       for(let i=0; i<coursesArray.courses.length; i++)
       {
@@ -259,32 +257,30 @@ function getTrack(event) {
       }
       resultCourses += "</table>";
 
-      resultCourses += "<h4>Elective Bank 1 (Required: " + coursesArray.electives1.required + ").</h4>" 
+      resultCourses += "<h4>Elective Bank 1 (Required: " + coursesArray.electives1.required + ").</h4>"
 
       resultCourses += "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
-  
+
       for(let i=0; i<coursesArray.electives1.courses.length; i++)
       {
         resultCourses += "<tr>";
         for(let j=0; j<3; j++)
         {
-          console.log(coursesArray.electives1.courses.length);
           resultCourses += "<td>" + coursesArray.electives1.courses[i][j] + "</td>";
         }
         resultCourses += "</tr>";
       }
       resultCourses += "</table>";
 
-      resultCourses += "<h4>Elective Bank 2 (Required: " + coursesArray.electives2.required + ").</h4>" 
+      resultCourses += "<h4>Elective Bank 2 (Required: " + coursesArray.electives2.required + ").</h4>"
 
       resultCourses += "<table><tr><th>Course Number</th><th>Course Name</th><th>Credit Hours</th></tr>"
-  
+
       for(let i=0; i<coursesArray.electives2.courses.length; i++)
       {
         resultCourses += "<tr>";
         for(let j=0; j<3; j++)
         {
-          console.log(coursesArray.electives2.courses.length);
           resultCourses += "<td>" + coursesArray.electives2.courses[i][j] + "</td>";
         }
         resultCourses += "</tr>";
