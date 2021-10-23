@@ -1,11 +1,10 @@
 import json
 
-from flask import Flask
+from flask import Flask, request
 from flaskr import util
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-app.data = []
 
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -16,12 +15,18 @@ def hello_world():
     return "<p>Hello, World!</p>"
 
 
+@app.route("/calculatecourses", methods=["POST"])
+def calculatecourses():
+    return classes(request.json[0], request.json[1])
+
 @app.route("/<int:classone>/<int:classtwo>")
 def classes(classone, classtwo):
     dd = {}
 
     # ["name", [1, electives], [2, electives]]
-    compared = util.compare_tracks(app.data[max(int(classone), int(classtwo))], app.data[min(int(classtwo), int(classone))])
+    csv_data = util.load_csv(classone, classtwo)
+
+    compared = util.compare_tracks(csv_data[max(int(classone), int(classtwo))], csv_data[min(int(classtwo), int(classone))])
 
     electives1 = compared[-2]
     electives2 = compared[-1]
@@ -50,14 +55,11 @@ def classes(classone, classtwo):
     }
     dd["electives2"] = electives_data
 
-    app.data = util.load_csv()
     return dd
 
 
 if __name__ == "__main__":
-    app.data = util.load_csv()
-
-    app.run(host="0.0.0.0", port=8081)
+    app.run(host="127.0.0.1", port=8081)
 
     #for i in range(0, 9):
     #    for j in range(0, 9):
