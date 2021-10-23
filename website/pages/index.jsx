@@ -95,6 +95,7 @@ class Home extends React.Component {
                     </div>
                 ): <></>}
                 <div className="threebythree">
+                    {/* Important note here: It is iterating through all of the tracks. */}
                     {this.state.tracks.map((trackObj) => (
                         <div className="item" key={trackObj.id}>
                             <label className="checkboxList">
@@ -195,7 +196,6 @@ class Home extends React.Component {
                                             );
                                         return (
                                             <div key={electiveIndex}>
-                                                {/*  Note: Even though there is a newline between them, this will show in the result*/}
                                                 <h4>
                                                     Elective Bank {electiveIndex + 1} (Required: {electiveBank.required})
                                                 </h4>
