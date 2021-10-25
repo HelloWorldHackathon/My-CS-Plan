@@ -27,6 +27,8 @@ def classes(classone, classtwo):
     # ["name", [1, electives], [2, electives]]
     csv_data = util.load_csv(classone, classtwo)
 
+    # This is where the prior changes were made by DitrusNight and where you might want to fiddle with using deep copy
+    # instead. I can't claim at all to know Python, but I hope pointing out the below is helpful. 
     compared = util.compare_tracks(csv_data[max(int(classone), int(classtwo))], csv_data[min(int(classtwo), int(classone))])
 
     electives1 = compared[-2]
