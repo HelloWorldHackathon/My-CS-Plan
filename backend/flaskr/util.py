@@ -49,12 +49,16 @@ def get_raw_classlist(data):
     return cls
 
 
-def load_csv():
-    csvs = []
-    for file in tracks:
+def load_csv(classOne, classTwo):
+    csvs = {}
+
+    for i in range(len(tracks)):
+        if(i != classOne and i != classTwo):
+            continue
+        file = tracks[i]
         path = "./data/" + file + ".csv"
         list = get_class_list(pd.read_csv(path))
-        csvs.append(list)
+        csvs[i] = list
     return csvs
 
 
@@ -139,7 +143,10 @@ def get_name(classnum: str) -> str:
         if abbr in class_lists.keys():
             classes = class_lists[abbr]
         else:
-            r = requests.get(classes_api.replace("<abbr>", abbr), verify=False)
+            try:
+                r = requests.get(classes_api.replace("<abbr>", abbr))
+            except:
+                return "Unknown"
             raw_data = r.json()
             classes = raw_data["value"]
             class_lists[abbr] = classes
@@ -180,7 +187,9 @@ def format_schedule(schedule_item):
 def list_remaining_electives(track, classes):
     tracks = track[-1]
     electives_list = tracks[1:]
+
     number_of_electives = track[-1][0]
+
     to_remove = []
     for elective in electives_list:
 
@@ -265,10 +274,14 @@ def get_hours(classnum: str) -> str:
         if len(str(num)) == 3:
             num = str(num) + "00"
 
+
         if abbr in class_lists.keys():
             classes = class_lists[abbr]
         else:
-            r = requests.get(classes_api.replace("<abbr>", abbr), verify=False)
+            try:
+                r = requests.get(classes_api.replace("<abbr>", abbr))
+            except:
+                return "Unknown"
             raw_data = r.json()
             classes = raw_data["value"]
             class_lists[abbr] = classes
