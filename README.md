@@ -1,5 +1,61 @@
 # My-CS-Plan
-A web application that allows Purdue CS students to optimize the classes they take to complete multiple CS concentrations
+A web application built with Next.js and Flask that allows Purdue CS students to optimize the classes they take to complete multiple CS concentrations. 
+
+## Table of Contents
+
+- [My-CS-Plan](#my-cs-plan)
+  - [Table of Contents](#table-of-contents)
+  - 
+
+
+## Setup
+
+### Clone the repository
+
+    cd
+
+### Install packages
+
+    cd
+
+### Start the server
+
+    cd
+
+### Start the webpage 
+
+    cd
+    
+### Access the webpage 
+
+    cd
+    
+
+## Contributers 
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+[Emoji key](https://allcontributors.org/docs/en/emoji-key) ✨
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/Jaimss"><img src="https://avatars.githubusercontent.com/u/53633325?v=4?s=100" width="100px;" alt=""/><br /><sub><b>James Harrell</b></sub></a><br /> <a href="#ideas-Jaimss" title="Ideas & Planning">🤔</a>  <a href="#platform-Jaimss" title=IPackaging">📦</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/commits?author=Jaimss" title="Code">💻</a> </td>
+      <td align="center"><a href="https://github.com/Jaimss"><img src="https://avatars.githubusercontent.com/u/50681033?v=4?s=100" width="100px;" alt=""/><br /><sub><b>noam987</b></sub></a><br /> <a href="#ideas-noam987" title="Ideas & Planning">🤔</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/commits?author=noam987" title="Code">💻</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/pulls?q=is%3Apr+reviewed-by%3Anoam987" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-noam987" title="Maintenance">🚧</a> </td>
+   <td align="center"><a href="https://github.com/JonathanOppenheimer"><img src="https://avatars.githubusercontent.com/u/12973114?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jonathan Oppenheimer</b></sub></a><br /> <a href="#ideas-JonathanOppenheimer" title="Ideas & Planning">🤔</a> <a title="Documentation">📖</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/commits?author=JonathanOppenheimer" title="Code">💻</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/pulls?q=is%3Apr+reviewed-by%3AJonathanOppenheimer" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-JonathanOppenheimer" title="Maintenance">🚧</a> </td>
+    <td align="center"><a href="https://github.com/thekammilian"><img src="https://avatars.githubusercontent.com/u/53964761?v=4?s=100" width="100px;" alt=""/><br /><sub><b>thekammilianm</b></sub></a><br /> <a href="#ideas-thekammilian" title="Ideas & Planning">🤔</a> </td>
+    <td align="center"><a href=https://github.com/DitrusNight"><img src="https://avatars.githubusercontent.com/u/93050361?v=4?s=100" width="100px;" alt=""/><br /><sub><b>DitrusNight</b></sub></a><br /><a href="https://github.com/HelloWorldHackathon/My-CS-Plan/commits?author=DitrusNight" title="Code">💻</a> <a href="https://github.com/HelloWorldHackathon/My-CS-Plan/pulls?q=is%3Apr+reviewed-by%3ADitrusNight" title="Reviewed Pull Requests">👀</a> <a href="#maintenance-DitrusNight" title="Maintenance">🚧</a></td> 
+  </tr>
+</table>
+      
+     
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+**The write up for the Hackathon is included below.** 
+
+---
 
 ## Inspiration
 The CS track system is VERY complicated. It can be frustrating trying to figure out what classes you need to take to finish two tracks. Some tracks have overlapping requirements, but most of the time, it is a list on the web that is tough to navigate. The two resources you can use are myPurduePlan which is notoriously outdated and slow, or an incredibly complicated spreadsheet posted by the CS Department 
