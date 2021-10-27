@@ -25,26 +25,48 @@ A web application built with Next.js and Flask that allows Purdue CS students to
 
 ## Setup
 
-### Clone the repository
+There are docker availables inside of /website/ and /backend/ if you'd like to use those. The below instructions a manual install and launch. 
 
-    cd
+### Clone the repository
+Navigate to where you'd like to clone the repository to, and then clone it
+    
+    cd [directory]
+    git clone https://github.com/HelloWorldHackathon/My-CS-Plan.git
 
 ### Install packages
-
-    cd
+In terminal, inside your repository's folder, cd into website/
+    
+    cd website
+    
+Then install the dependencies:
+   
+    npm install 
 
 ### Start the server
+In terminal, inside your repository's folder, cd into backend/ 
 
-    cd
+    cd .. 
+    cd /backend
+Then install the requirements
+
+    pip install -r requirements.txt
+Then start the server
+
+    python3 -m flaskr.app   
 
 ### Start the webpage 
-
-    cd
+Next, create a new terminal tab. In that terminal tab, inside your repository's folder, cd into website/ 
     
+    cd website
+Then start the page
+    
+    npm run dev
+
 ### Access the webpage 
-
-    cd
+From there both the backend server and page are running! You can access the page at localhost with the provided port. Paste 
     
+    localhost:3000
+into your web browser.     
 
 ## Contributers 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
