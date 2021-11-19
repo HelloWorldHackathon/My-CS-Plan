@@ -67,7 +67,7 @@ def compare_tracks(track1, track2):
 
     remove_singles(track1, track2, classes)
 
-    remove_singles(track2, track1,classes)
+    remove_singles(track2, track1, classes)
     remove_no_overlap(track1, track2, classes)
     remove_no_overlap(track2, track1, classes)
 
@@ -83,7 +83,6 @@ def compare_tracks(track1, track2):
 
 
 def remove_no_overlap(track1, track2, classes):
-
     to_remove = []
     for requirement1_index in range(len(track1) - 1):
         requirement1 = track1[requirement1_index]
@@ -92,7 +91,7 @@ def remove_no_overlap(track1, track2, classes):
         while course1_index < len(requirement1):
             course1 = requirement1[course1_index]
             requirement2_index = 0
-            while requirement2_index < len(track2)-1:
+            while requirement2_index < len(track2) - 1:
                 requirement2 = track2[requirement2_index]
                 course2_index = 1
                 while course2_index < len(requirement2):
@@ -106,7 +105,7 @@ def remove_no_overlap(track1, track2, classes):
                         course1_index = 100
                     course2_index += 1
                 requirement2_index += 1
-            course1_index +=1
+            course1_index += 1
         if not req1_in_Track2:
             classes.append(requirement1[1:])
             to_remove.append(requirement1)
@@ -186,7 +185,6 @@ def format_schedule(schedule_item):
 
 
 def list_remaining_electives(track, classes):
-
     tracks = track[-1]
     electives_list = tracks[1:]
 
@@ -235,7 +233,6 @@ def compare_electives(courses):
         for elective2_num in range(1, len(track2_electives)):
             elective2 = track2_electives[elective2_num]
             if track1_electives_num <= 0 or track2_electives_num <= 0:
-
                 break
             if elective1 == elective2:
                 to_remove.append(elective1)
